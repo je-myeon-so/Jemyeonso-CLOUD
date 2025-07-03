@@ -4,3 +4,7 @@
 .terraform/
 *.tfstate
 *.tfstate.*
+
+backend/.terraform/
+backend/*.tfstate
+backend/*.tfstate.*
