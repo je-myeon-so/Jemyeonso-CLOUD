@@ -52,3 +52,43 @@ variable "subnet_db_az2" {
   type = string
   default = "10.110.160.0/24"
 }
+
+#OpenVPN
+variable "openvpn_tags"{
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-OpenVPN"
+  }
+}
+
+#Instance
+variable "ec2_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-EC2"
+  }
+}
+variable "ami"{
+  type = string
+  default = "ami-05a7f3469a7653972" 
+}
+variable "instance_type" {
+  type = string
+  default = "t3.medium"
+}
+variable "instance_ebs_volume" {
+  type = string
+  default = "gp3"
+}
+variable "instance_ebs_size" {
+  type = number
+  default = 30
+}
+
+#DB Instance
+variable "db_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-DB-instance"
+  }
+}
