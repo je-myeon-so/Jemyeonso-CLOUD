@@ -28,3 +28,17 @@ module "jemyeonso_security_groups" {
 module "jemyeonso_iam" {
   source              = "./modules/iam"
 }
+
+module "jemyeonso_openvpn" {
+  source             = "./modules/openvpn"
+
+  stage              = var.stage
+  servicename        = var.servicename
+  tags               = var.openvpn_tags
+
+  vpc_id             = module.jemyeonso_vpc.vpc_id
+  vpc_security_group_ids = [module.jemyeonso_security_groups.sg_openvpn_id]
+  subnet_id          = module.jemyeonso_vpc.public_az1_id
+
+  depends_on = [ module.jemyeonso_vpc ]
+}
