@@ -60,3 +60,27 @@ variable "openvpn_tags"{
     "name" = "jemyeonso-OpenVPN"
   }
 }
+
+#Instance
+variable "ec2_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-EC2"
+  }
+}
+variable "ami"{
+  type = string
+  default = "ami-05a7f3469a7653972" 
+}
+variable "instance_type" {
+  type = string
+  default = "t3.medium"
+}
+variable "instance_ebs_volume" {
+  type = string
+  default = "gp3"
+}
+variable "instance_ebs_size" {
+  type = number
+  default = 30
+}
