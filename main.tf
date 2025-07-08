@@ -42,3 +42,27 @@ module "jemyeonso_openvpn" {
 
   depends_on = [ module.jemyeonso_vpc ]
 }
+
+module "jemyeonso_ec2" {
+  source              = "./modules/instance"
+
+  stage               = var.stage
+  servicename         = var.servicename
+  tags                = var.ec2_tags
+  
+  ami                 = var.ami
+  instance_type       = var.instance_type
+  ebs_volume          = var.instance_ebs_volume
+  ebs_size            = var.instance_ebs_size
+
+  vpc_id              = module.jemyeonso_vpc.vpc_id
+  subnet_id           = module.jemyeonso_vpc.service_az1_id
+
+  sg_ids              = [module.jemyeonso_security_groups.sg_ec2_id] 
+
+  iam_instance_profile_name = module.jemyeonso_iam.ec2_instance_profile_name
+
+  depends_on = [ module.jemyeonso_vpc ]
+}
+
+
