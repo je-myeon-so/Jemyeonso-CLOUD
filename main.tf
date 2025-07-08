@@ -65,4 +65,22 @@ module "jemyeonso_ec2" {
   depends_on = [ module.jemyeonso_vpc ]
 }
 
+#ec2(db)
+module "jemyeonso_db" {
+  source            = "./modules/db_instance"
+  stage             = var.stage
+  servicename       = var.servicename
+  tags              = var.db_tags
 
+  vpc_id            = module.jemyeonso_vpc.vpc_id
+  subnet_id         =  module.jemyeonso_vpc.db_az1_id
+  sg_ids            = [module.jemyeonso_security_groups.sg_db_id]
+  ami               = var.ami
+  instance_type     = var.instance_type
+  ebs_size          = var.instance_ebs_size
+  ebs_volume        = var.instance_ebs_volume
+
+  iam_instance_profile_name = module.jemyeonso_iam.db_instance_profile_name
+
+  depends_on = [ module.jemyeonso_vpc ]
+}
