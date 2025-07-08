@@ -24,3 +24,7 @@ module "jemyeonso_security_groups" {
 
   vpc_id              = module.jemyeonso_vpc.vpc_id
 }
+
+module "jemyeonso_iam" {
+  source              = "./modules/iam"
+}
