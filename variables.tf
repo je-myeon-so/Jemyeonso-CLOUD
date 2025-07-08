@@ -84,3 +84,11 @@ variable "instance_ebs_size" {
   type = number
   default = 30
 }
+
+#DB Instance
+variable "db_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-DB-instance"
+  }
+}
