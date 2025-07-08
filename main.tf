@@ -15,3 +15,12 @@ module "jemyeonso_vpc" {
   subnet_db_az1       = var.subnet_db_az1
   subnet_db_az2       = var.subnet_db_az2
 }
+
+module "jemyeonso_security_groups" {
+  source              = "./modules/security_group"
+
+  stage               = var.stage
+  servicename         = var.servicename
+
+  vpc_id              = module.jemyeonso_vpc.vpc_id
+}
