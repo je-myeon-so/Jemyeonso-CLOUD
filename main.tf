@@ -114,3 +114,10 @@ module "jemyeonso_cdn" {
   s3_bucket_name      = module.jemyeonso_s3_static_site.s3_bucket_name
   alb_dns_name        = module.jemyeonso_alb.alb_dns_name
 }
+
+module "jemyeonso_ecr" {
+  source              = "./modules/ecr"
+  stage               = var.stage
+  servicename         = var.servicename
+  tags                = var.ecr_tags
+} 
