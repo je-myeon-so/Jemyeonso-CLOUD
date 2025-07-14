@@ -108,3 +108,11 @@ variable "static_tags" {
     "name" = "jemyeonso-s3-front-static"
   }
 }
+
+#cloudfront
+variable "cdn_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-cdn"
+  }
+}

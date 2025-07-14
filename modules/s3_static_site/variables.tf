@@ -12,7 +12,7 @@ variable "bucket_name" {
   type        = string
   default = "jemyeonso-static-s3"
 }
-# variable "cloudfront_oai_arn" {
-#   description = "CloudFront Origin Access Identity의 IAM ARN"
-#   type        = string
-# }
+variable "cloudfront_oai_arn" {
+  description = "CloudFront Origin Access Identity의 IAM ARN"
+  type        = string
+}
