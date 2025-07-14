@@ -103,5 +103,14 @@ module "jemyeonso_s3_static_site" {
   stage               = var.stage
   servicename         = var.servicename
   tags                = var.static_tags
-  #cloudfront_oai_arn  = module.jemyeonso_cdn.cloudfront_oai_arn
+  cloudfront_oai_arn  = module.jemyeonso_cdn.cloudfront_oai_arn
+}
+
+module "jemyeonso_cdn" {
+  source              = "./modules/cdn"
+  stage               = var.stage
+  servicename         = var.servicename
+  tags                = var.cdn_tags
+  s3_bucket_name      = module.jemyeonso_s3_static_site.s3_bucket_name
+  alb_dns_name        = module.jemyeonso_alb.alb_dns_name
 }
