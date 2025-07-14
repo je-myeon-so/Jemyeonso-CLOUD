@@ -92,3 +92,11 @@ variable "db_tags" {
     "name" = "jemyeonso-DB-instance"
   }
 }
+
+# ALB
+variable "alb_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-alb"
+  }
+}

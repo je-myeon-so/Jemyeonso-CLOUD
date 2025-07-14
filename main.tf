@@ -84,3 +84,16 @@ module "jemyeonso_db" {
 
   depends_on = [ module.jemyeonso_vpc ]
 }
+
+module "jemyeonso_alb" {
+  source              = "./modules/alb"
+  stage               = var.stage
+  servicename         = var.servicename
+  tags                = var.alb_tags 
+
+  subnet_ids          = [module.jemyeonso_vpc.public_az1_id, module.jemyeonso_vpc.public_az2_id]
+  security_group_ids  = [module.jemyeonso_security_groups.sg_alb_id]
+  vpc_id              = module.jemyeonso_vpc.vpc_id
+  
+  instance_id         = module.jemyeonso_ec2.instance_id
+}
