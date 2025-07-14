@@ -100,3 +100,11 @@ variable "alb_tags" {
     "name" = "jemyeonso-alb"
   }
 }
+
+#cdn bucket
+variable "static_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-s3-front-static"
+  }
+}

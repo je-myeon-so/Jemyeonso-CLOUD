@@ -97,3 +97,11 @@ module "jemyeonso_alb" {
   
   instance_id         = module.jemyeonso_ec2.instance_id
 }
+
+module "jemyeonso_s3_static_site" { 
+  source              = "./modules/s3_static_site"
+  stage               = var.stage
+  servicename         = var.servicename
+  tags                = var.static_tags
+  #cloudfront_oai_arn  = module.jemyeonso_cdn.cloudfront_oai_arn
+}
