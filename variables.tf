@@ -116,3 +116,11 @@ variable "cdn_tags" {
     "name" = "jemyeonso-cdn"
   }
 }
+
+#ecr
+variable "ecr_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-ecr"
+  }
+}
