@@ -84,3 +84,40 @@ module "jemyeonso_db" {
 
   depends_on = [ module.jemyeonso_vpc ]
 }
+
+module "jemyeonso_alb" {
+  source              = "./modules/alb"
+  stage               = var.stage
+  servicename         = var.servicename
+  tags                = var.alb_tags 
+
+  subnet_ids          = [module.jemyeonso_vpc.public_az1_id, module.jemyeonso_vpc.public_az2_id]
+  security_group_ids  = [module.jemyeonso_security_groups.sg_alb_id]
+  vpc_id              = module.jemyeonso_vpc.vpc_id
+  
+  instance_id         = module.jemyeonso_ec2.instance_id
+}
+
+module "jemyeonso_s3_static_site" { 
+  source              = "./modules/s3_static_site"
+  stage               = var.stage
+  servicename         = var.servicename
+  tags                = var.static_tags
+  cloudfront_oai_arn  = module.jemyeonso_cdn.cloudfront_oai_arn
+}
+
+module "jemyeonso_cdn" {
+  source              = "./modules/cdn"
+  stage               = var.stage
+  servicename         = var.servicename
+  tags                = var.cdn_tags
+  s3_bucket_name      = module.jemyeonso_s3_static_site.s3_bucket_name
+  alb_dns_name        = module.jemyeonso_alb.alb_dns_name
+}
+
+module "jemyeonso_ecr" {
+  source              = "./modules/ecr"
+  stage               = var.stage
+  servicename         = var.servicename
+  tags                = var.ecr_tags
+} 

@@ -92,3 +92,35 @@ variable "db_tags" {
     "name" = "jemyeonso-DB-instance"
   }
 }
+
+# ALB
+variable "alb_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-alb"
+  }
+}
+
+#cdn bucket
+variable "static_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-s3-front-static"
+  }
+}
+
+#cloudfront
+variable "cdn_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-cdn"
+  }
+}
+
+#ecr
+variable "ecr_tags" {
+  type = map(string)
+  default = {
+    "name" = "jemyeonso-ecr"
+  }
+}
